@@ -13,8 +13,8 @@ function moverImagen() {
     if (click) {
         let xEy = soltarRaton();
         var imagensita = document.getElementById('imagen');
-        imagensita.style.top = xEy[1] + "px";
-        imagensita.style.left = xEy[0] + "px";
+        imagensita.style.top = xEy[1]-(event.target.height)/2 + "px";
+        imagensita.style.left = xEy[0]-(event.target.width)/2 + "px";
     }
 }
 
