@@ -1,4 +1,5 @@
 function crearTabla() {
+    document.close();
     document.write('<table border="1" style="width:500px" id="limpiar">' + '<br>');
     for(let i = 0;i < 12;i++){
         document.write('<tr id="limpito">');
@@ -25,8 +26,7 @@ function resetear(celda) {
 }
 
 function resetAll() {
-    var limpito = document.getElementById('limpiar');
-    limpito.style.backgroundColor = 'white';
+    crearTabla();
 }
 
 addEventListener('load',crearTabla);
