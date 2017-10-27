@@ -1,0 +1,32 @@
+<html>
+    <style>
+        div{
+            height: 500px;
+            width: 500px;
+            border: dotted;
+        }
+    </style>
+    <body>
+
+    <div id="tocar">
+
+    </div>
+    </body>
+    <script>
+        function touchevent() {
+            var touchzone = document.getElementById('tocar');
+            touchzone.addEventListener("touchend",touchprint)
+        }
+
+        function touchprint(eventt) {
+            for(i = 0;i < eventt.touches.length ;i++){
+                var x = eventt.touches[i].pageX;
+                var y = eventt.touches[i].pageY;
+                alert(x + ' ' + y);
+            }
+        }
+
+        touchevent();
+    </script>
+</html>
+
