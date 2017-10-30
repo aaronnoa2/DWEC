@@ -1,5 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<style>
+    img{
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        top:5px;
+        visibility: hidden;
+    }
+
+    #aspadni{
+        left:210px;
+        top:67px
+    }
+
+    #corazondni{
+        left:210px;
+        top:67px
+    }
+
+    #aspatelefono{
+        left:220px;
+        top:95px
+    }
+
+    #corazontelefono{
+        left:220px;
+        top:95px
+    }
+
+    #corazonemail{
+        left:220px;
+        top:123px
+    }
+
+    #aspaemail{
+        left:220px;
+        top:123px
+    }
+
+    input{
+        margin: 3px;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <script src="RegularExpresions.js"></script>
@@ -11,14 +53,19 @@
     <br>
     Subname:<input type="text" name="Subname" value="" />
     <br>
-    DNI:<input type="text" name="DNI" value="" id="DNI" onblur="validaDNI()"/>
+    DNI:<input type="text" name="DNI" value="" id="DNI" onkeyup="validaDNI()"/>
+    <img src="corazon.png" id="corazondni">
+    <img src="cruz-roja.png" id="aspadni">
     <br>
-    Phone:<input type="text" name="Phone" value="" id="Telefono" onblur="validaTelefono()"/>
+    Phone:<input type="text" name="Phone" value="" id="Telefono" onkeypress="validaTelefono()"/>
+    <img src="corazon.png" id="corazontelefono">
+    <img src="cruz-roja.png" id="aspatelefono">
     <br>
-    Email:<input type="text" name="Email" value="" id="Email" onblur="validaEmail()"/>
+    Email:<input type="text" name="Email" value="" id="Email" onkeypress="validaEmail()"/>
+    <img src="corazon.png" id="corazonemail">
+    <img src="cruz-roja.png" id="aspaemail">
     <br>
-    UserName:<input type="text" name="UserName" value="" id="UserName" onblur="validaUsuario()"/>
-
+    UserName:<input type="text" name="UserName" value="" id="UserName"/>
     <br/>
 
 </form>

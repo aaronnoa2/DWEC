@@ -6,28 +6,34 @@ validarEmail = new RegExp("^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(
 
 function validaDNI() {
     if(document.getElementById('DNI').value.match(validadDNI)){
-
+        document.getElementById('corazondni').style.visibility = 'visible';
+        document.getElementById('aspadni').style.visibility = 'hidden';
     }
     else{
-        document.getElementById('DNI').style.backgroundColor = 'red';
+        document.getElementById('corazondni').style.visibility = 'hidden';
+        document.getElementById('aspadni').style.visibility = 'visible';
     }
 }
 
 function validaEmail() {
     if(document.getElementById('Email').value.match(validarEmail)){
-
+        document.getElementById('corazonemail').style.visibility = 'visible';
+        document.getElementById('aspaemail').style.visibility = 'hidden';
     }
     else{
-        document.getElementById('Email').style.backgroundColor = 'red';
+        document.getElementById('corazonemail').style.visibility = 'hidden';
+        document.getElementById('aspaemail').style.visibility = 'visible';
     }
 }
 
 function validaTelefono() {
     if(document.getElementById('Telefono').value.match(validarTelefono)){
-
+        document.getElementById('corazontelefono').style.visibility = 'visible';
+        document.getElementById('aspatelefono').style.visibility = 'hidden';
     }
     else{
-        document.getElementById('Telefono').style.backgroundColor = 'red';
+        document.getElementById('corazontelefono').style.visibility = 'hidden';
+        document.getElementById('aspatelefono').style.visibility = 'visible';
     }
 }
 
