@@ -1,12 +1,12 @@
 function guardarUsuario() {
     nombreUsuario = document.getElementById('UserName').value;
-    document.cookie = nombreUsuario + '';
+    document.cookie = 'username=' + nombreUsuario + ';expires='+ tiempoExpireString;
     alert('Hola ' + nombreUsuario);
     console.log(document.cookie);
 }
 
 function borrarcookies() {
-    document.cookie = ' ';
+    document.cookie = 'username=; expires="Sun, 15 Jul 2012 00:00:01"' ;
 }
 
 window.onload = function cookie(){
@@ -24,5 +24,9 @@ window.onload = function cookie(){
         usuario.style.backgroundColor = String(prompt('Color de fondo'));
     }
 };
+
+var tiempoExpire = new Date();
+tiempoExpire.setSeconds(5000);
+var tiempoExpireString = tiempoExpire.toUTCString();
 
 addEventListener("unload",borrarcookies);

@@ -13,16 +13,17 @@ window.onload = function cookie(){
 };
 
 function guardarUsuario() {
-    tiempoExpire = new Date();
-    tiempoExpire.setSeconds(300);
-    tiempoExpireString = tiempoExpire.toUTCString();
     nombreUsuario = document.getElementById('UserName').value;
-    document.cookie = nombreUsuario +' '+ tiempoExpireString;
+    document.cookie = 'username=' + nombreUsuario + ';expires='+ tiempoExpireString;
     alert('Hola ' + nombreUsuario);
     console.log(document.cookie);
 }
 
 function borrarcookies() {
-    document.cookie = ' ';
+    document.cookie = 'username=; expires="Sun, 15 Jul 2012 00:00:01"' ;
 }
+
+var tiempoExpire = new Date();
+tiempoExpire.setSeconds(5000);
+var tiempoExpireString = tiempoExpire.toUTCString();
 
