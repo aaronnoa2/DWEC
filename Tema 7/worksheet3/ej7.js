@@ -5,7 +5,7 @@ $( document ).ready(function() {
             opacity:'0.5'
 
         },10000);
-    })
+    });
 
     $('#stop').click(function () {
         $('p').stop()
