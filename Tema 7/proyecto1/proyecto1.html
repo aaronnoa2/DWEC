@@ -14,7 +14,6 @@
             width: 31%;
             height: auto;
             display: inline-block;
-            margin-left:2%;
             margin-top:4%;
             margin-bottom: 4%;
         }
@@ -22,12 +21,25 @@
         #contenido{
             margin-left: 5%;
         }
+
+        h2{
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+        }
+
+        #busqueda{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
 <div id="busqueda">
     <input type="text" id="pelicula">
+    <select id="filtrar">
+        <option value="movie">Peliculas</option>
+        <option value="series">Series</option>
+        <option value="episode">Episodios</option>
+    </select>
     <button type="button" id="boton">Buscar</button>
 </div>
 
