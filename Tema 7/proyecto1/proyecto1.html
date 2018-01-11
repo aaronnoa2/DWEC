@@ -28,22 +28,36 @@
 
         #busqueda{
             text-align: center;
+            background-color: grey;
+            margin-top: 2%;
+            margin-left: 5%;
+            margin-right: 5%;
+            height: 100px;
+        }
+
+        #elementos{
+            padding-top: 2%;
         }
     </style>
 </head>
 <body>
 
 <div id="busqueda">
-    <input type="text" id="pelicula">
-    <select id="filtrar">
-        <option value="movie">Peliculas</option>
-        <option value="series">Series</option>
-        <option value="episode">Episodios</option>
-    </select>
-    <button type="button" id="boton">Buscar</button>
+    <div id="elementos">
+        <input type="text" id="pelicula">
+        <select id="filtrar">
+            <option value="movie">Peliculas</option>
+            <option value="series">Series</option>
+            <option value="episode">Episodios</option>
+        </select>
+        <button type="button" id="boton">Buscar</button>
+    </div>
+
 </div>
 
-<div id="contenido"></div>
+<div id="contenido">
+
+</div>
 
 </body>
 </html>
