@@ -59,6 +59,7 @@ function buscarPelis() {
             url: "http://www.omdbapi.com/?s="+$('#pelicula').val()+"&apikey=31b14819&page=" + pagina + '&type=' + filtro + '',
             success: function (html) {
                 CrearDivs(html);
+                console.log(html);
                 pagina += 1;
                 en_peticion = false;
             }
