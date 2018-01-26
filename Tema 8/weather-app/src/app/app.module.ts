@@ -9,13 +9,15 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { WeatherApiService } from './weather-api.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { InformacionComponent } from './informacion/informacion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BusquedaComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    InformacionComponent
   ],
   imports: [
     BrowserModule,

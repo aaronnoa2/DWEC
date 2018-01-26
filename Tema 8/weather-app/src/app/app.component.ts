@@ -11,19 +11,18 @@ export class AppComponent implements OnInit {
   }
 
   conseguirdatos() {
-    this._Observable.exportarObservable().subscribe(
+    this._Observable.peticion().subscribe(
       data => {
         console.log(data);
       });
   }
 
   cambiarDatos() {
-    this._Observable.cambiarDatos();
+    this._Observable.peticion();
   }
 
   ngOnInit() {
     this.conseguirdatos();
     this.cambiarDatos();
-
   }
 }

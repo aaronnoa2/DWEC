@@ -5,19 +5,9 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class WeatherApiService {
-  datos = new Subject<any>();
-  constructor(private http: HttpClient) { }
-
-  exportarObservable() {
-    return this.datos.asObservable();
-  }
-
-  cambiarDatos() {
-    setTimeout(() => {this.datos.next(this.peticion())}, 3000);
-  }
-
+  constructor(private http: HttpClient) {}
 
   peticion(): Observable<any> {
-    return this.http.get('https://api.darksky.net/forecast/[key]/[latitude],[longitude]');
+    return this.http.get('https://api.darksky.net/forecast/eab743b023c603d863769be37137fb1e/37.1886273,-3.5907775');
   }
 }
