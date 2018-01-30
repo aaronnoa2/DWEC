@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {WeatherApiService} from './weather-api.service';
 
 @Component({
   selector: 'app-root',
@@ -7,22 +6,9 @@ import {WeatherApiService} from './weather-api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private _Observable: WeatherApiService) {
-  }
-
-  conseguirdatos() {
-    this._Observable.peticion().subscribe(
-      data => {
-        console.log(data);
-      });
-  }
-
-  cambiarDatos() {
-    this._Observable.peticion();
+  constructor() {
   }
 
   ngOnInit() {
-    this.conseguirdatos();
-    this.cambiarDatos();
   }
 }

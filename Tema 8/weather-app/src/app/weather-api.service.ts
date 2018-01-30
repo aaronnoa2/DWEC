@@ -10,4 +10,7 @@ export class WeatherApiService {
   peticion(): Observable<any> {
     return this.http.get('https://api.darksky.net/forecast/eab743b023c603d863769be37137fb1e/37.1886273,-3.5907775');
   }
+  obtenerCoordenadas():Observable<any>{
+    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?address=Granada&key=AIzaSyCULU3jC-yIfnSFcFSxfcnyzWv4XKtrMQM')
+  }
 }
