@@ -9,7 +9,25 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { WeatherApiService } from './weather-api.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { InformacionComponent } from './informacion/informacion.component';
+import { BodyComponent } from './body/body.component';
+import { RouterModule, Routes } from '@angular/router';
+import { DiarioComponent } from './diario/diario.component';
+import { SemanalComponent } from './semanal/semanal.component';
+
+const appRoutes: Routes = [
+  { path: 'inicio', component: BodyComponent },
+  { path: 'diario',      component: DiarioComponent },
+  {
+    path: 'semanal',
+    component: SemanalComponent,
+    data: { title: 'Heroes List' }
+  },
+  { path: '',
+    redirectTo: '/inicio',
+    pathMatch: 'full'
+  },
+  { path: '**', component: BodyComponent }
+];
 
 @NgModule({
   declarations: [
@@ -17,9 +35,15 @@ import { InformacionComponent } from './informacion/informacion.component';
     BusquedaComponent,
     HeaderComponent,
     FooterComponent,
-    InformacionComponent
+    BodyComponent,
+    DiarioComponent,
+    SemanalComponent
   ],
   imports: [
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
     BrowserModule,
     FormsModule,
     HttpClientModule
