@@ -9,23 +9,47 @@ var io = socketIO(server);
 
 cartas = [];
 jugadores = 0;
+listo = [false,false];
 
 const port = process.env.PORT || 3000;
 
 io.on('connection', function (socket) {
     socket.broadcast.emit("user connected");
 
-    socket.on('elegirCarta',function (carta) {
-      cartas.push(carta);
-      if (cartas.length >= 2){
-        ganador();
+    socket.on('listo',function () {
+      if(listo[0] === false)
+        listo[0] = true;
+      else
+        listo[1] = true;
+      if(listo[0] === true && listo[1] ===true){
+
+        socket.on('salaDeJuego',function () {
+          console.log('entra en sala de juego');
+          socket.join('salaJugadores');
+          console.log('añadido a la sala jugadores');
+          jugadores +=1;
+
+          socket.on('iniciarPartida',function () {
+
+            socket.on('elegirCarta',function (carta) {
+
+              if(jugadores === 2){
+                cartas.push(carta);
+                if (cartas.length >= 2){
+                  ganador();
+                }
+              }
+            });
+          });
+        });
       }
     });
-
 
     socket.on('chat message', function (msg) {
         io.emit('chat message', msg);
     })
+
+
 });
 
 server.listen(port, function () {

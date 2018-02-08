@@ -10,10 +10,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
 import { ChatComponent } from './chat/chat.component';
 import { JuegoComponent } from './juego/juego.component';
+import { EmpezarPartidaComponent } from './empezar-partida/empezar-partida.component';
 
 
 const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
+  { path: 'empezarPartida', component: EmpezarPartidaComponent },
   { path: 'ppt',      component: JuegoComponent},
   { path: '',
     redirectTo: '/inicio',
@@ -30,6 +32,7 @@ const appRoutes: Routes = [
     InicioComponent,
     ChatComponent,
     JuegoComponent,
+    EmpezarPartidaComponent,
   ],
   imports: [
     RouterModule.forRoot(

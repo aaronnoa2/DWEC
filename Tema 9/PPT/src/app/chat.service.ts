@@ -11,13 +11,21 @@ export class ChatService {
     this.socket = io(this.url);
   }
 
+
+  public listo(){
+    this.socket.emit('listo');
+  }
+
+  public salaDeJuego(){
+    this.socket.emit('salaDeJuego')
+  }
+
   public sendMessage(message){
     this.socket.emit('chat message',message);
   }
 
   public elegirCarta(carta){
     this.socket.emit('elegirCarta',carta);
-    console.log(carta + 'estamos en el service')
   }
 
   public getMessages = () => {
