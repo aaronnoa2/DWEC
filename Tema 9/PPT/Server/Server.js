@@ -17,19 +17,21 @@ io.on('connection', function (socket) {
     socket.broadcast.emit("user connected");
 
     socket.on('listo',function () {
-      if(listo[0] === false)
+      if(listo[0] === false){
         listo[0] = true;
+        console.log(listo[0]);
+        console.log(listo[1]);
+      }
       else
         listo[1] = true;
-      if(listo[0] === true && listo[1] ===true){
+        console.log(listo[0]);
+        console.log(listo[1]);
+      if(listo[0] === true && listo[1] === true){
 
-        socket.on('salaDeJuego',function () {
-          console.log('entra en sala de juego');
           socket.join('salaJugadores');
           console.log('añadido a la sala jugadores');
           jugadores +=1;
-
-          socket.on('iniciarPartida',function () {
+          console.log(jugadores + ' cantidad de jugadores ahora mismo');
 
             socket.on('elegirCarta',function (carta) {
 
@@ -40,8 +42,6 @@ io.on('connection', function (socket) {
                 }
               }
             });
-          });
-        });
       }
     });
 

@@ -8,11 +8,7 @@ import {ChatService} from "../chat.service";
 })
 export class InicioComponent implements OnInit {
 
-  constructor(private chat: ChatService) { }
-
-  salaDeJuego(){
-    this.chat.salaDeJuego();
-  }
+  constructor(private chat: ChatService) {}
 
   ngOnInit() {
   }

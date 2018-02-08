@@ -16,10 +16,6 @@ export class ChatService {
     this.socket.emit('listo');
   }
 
-  public salaDeJuego(){
-    this.socket.emit('salaDeJuego')
-  }
-
   public sendMessage(message){
     this.socket.emit('chat message',message);
   }

@@ -7,16 +7,23 @@ import {ChatService} from "../chat.service";
   styleUrls: ['./empezar-partida.component.css']
 })
 export class EmpezarPartidaComponent implements OnInit {
-
+  habilitado = false;
+  link = "/empezarPartida";
   constructor(private chat: ChatService) { }
 
   listo(){
+    /*console.log('esta habilitado');
     this.chat.listo();
-    this.deshabilitarBoton()
+    this.deshabilitarBoton();*/
+    this.empiezaPartida();
   }
 
   deshabilitarBoton(){
+    this.habilitado = true;
+  }
 
+  empiezaPartida(){
+    this.link = "/ppt";
   }
 
   ngOnInit() {
