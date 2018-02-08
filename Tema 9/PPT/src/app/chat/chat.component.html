@@ -1,0 +1,7 @@
+<div *ngFor="let message of messages">
+  {{message}}
+</div>
+
+<form class="chat">
+  <input name="enviar" [(ngModel)]="message" /><button (click)="sendMessage()">Send</button>
+</form>

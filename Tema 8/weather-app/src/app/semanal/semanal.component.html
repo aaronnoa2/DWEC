@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        Temperatura Maxima
+      </div>
+      <div class="col-sm">
+        Humedad
+      </div>
+      <div class="col-sm">
+        Resumen
+      </div>
+      <div class="col-sm">
+        Velocidad del viento
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm">
+        {{temperaturaMaxima}}º
+      </div>
+      <div class="col-sm">
+        {{humedad}}
+      </div>
+      <div class="col-sm">
+        {{resumen}}
+      </div>
+      <div class="col-sm">
+        {{velocidad}}km/h
+      </div>
+    </div>
+  </div>
+  <p>
+    <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Mas información</a>
+  </p>
+  <div class="row">
+    <div class="col">
+      <div class="collapse multi-collapse" id="multiCollapseExample1">
+        <div class="card card-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                Nubes
+              </div>
+              <div class="col-sm">
+                Lluvia
+              </div>
+              <div class="col-sm">
+                Relente
+              </div>
+              <div class="col-sm">
+                Temperatura Minima
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                {{nubes}}
+              </div>
+              <div class="col-sm">
+                {{lluvia}}%
+              </div>
+              <div class="col-sm">
+                {{relente}}
+              </div>
+              <div class="col-sm">
+                {{temperaturaMinima}}º
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

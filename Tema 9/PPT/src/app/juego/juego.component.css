@@ -1,0 +1,9 @@
+.tablero{
+  width: 100%;
+  height: 600px;
+}
+
+.cartas{
+  padding-top:18%;
+  padding-left: 40%;
+}
