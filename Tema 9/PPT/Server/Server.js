@@ -53,16 +53,14 @@ io.on('connection', function (socket) {
     }
   });
 
-  socket.on('chat message', function (msg) {
-    io.emit('chat message', msg);
+  socket.on('chat message', function (data) {
+    io.emit('chat message', data);
   });
 
   socket.on('disconnect', function () {
     socket.broadcast.emit('user disconnected');
     console.log('User disconnected');
   });
-
-
 });
 
 server.listen(port, function () {

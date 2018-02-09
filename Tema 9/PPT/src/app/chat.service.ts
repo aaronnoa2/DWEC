@@ -16,8 +16,8 @@ export class ChatService {
     this.socket.emit('listo');
   }
 
-  public sendMessage(message) {
-    this.socket.emit('chat message', message);
+  public sendMessage(data) {
+    this.socket.emit('chat message', data);
   }
 
   public elegirCarta(carta) {
@@ -51,8 +51,8 @@ export class ChatService {
 
   public getMessages = () => {
     return Observable.create((observer) => {
-      this.socket.on('chat message', (message) => {
-        observer.next(message);
+      this.socket.on('chat message', (data) => {
+        observer.next(data);
       })
     })
   }
