@@ -7,15 +7,21 @@ import {ChatService} from "../chat.service";
   styleUrls: ['./juego.component.css']
 })
 export class JuegoComponent implements OnInit {
-
+  deshabilitado = false;
   constructor(private chat: ChatService) { }
 
   elegirCarta(carta){
     this.chat.elegirCarta(carta);
-    console.log(carta + 'estamos en el ts')
+    this.deshabilitado = true;
   }
 
   ngOnInit() {
+    this.chat.empezar().subscribe(data => {
+      this.deshabilitado = data;
+    });
+    this.chat.habilitar().subscribe(data => {
+      this.deshabilitado = data;
+    })
   }
 
 }

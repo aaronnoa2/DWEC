@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ChatService} from "../chat.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-empezar-partida',
@@ -9,24 +10,25 @@ import {ChatService} from "../chat.service";
 export class EmpezarPartidaComponent implements OnInit {
   habilitado = false;
   link = "/empezarPartida";
-  constructor(private chat: ChatService) { }
+  constructor(private chat: ChatService, private router: Router) { }
 
   listo(){
-    /*console.log('esta habilitado');
     this.chat.listo();
-    this.deshabilitarBoton();*/
-    this.empiezaPartida();
+    this.deshabilitarBoton();
   }
 
   deshabilitarBoton(){
     this.habilitado = true;
-  }
-
-  empiezaPartida(){
-    this.link = "/ppt";
+    console.log(this.habilitado);
   }
 
   ngOnInit() {
-  }
+    this.chat.empezar().subscribe(data => {
+      this.router.navigate(['/ppt']);
+    });
 
+    this.chat.acabar().subscribe(data => {
+      this.router.navigate(['/inicio']);
+    });
+  }
 }
