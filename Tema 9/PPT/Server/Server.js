@@ -8,13 +8,16 @@ var socketIO = require('socket.io');
 var io = socketIO(server);
 
 cartas = [];
+jugadores = [];
 listo = [false, false];
 rondas = 0;
+puntos = [0,0];
 
 const port = process.env.PORT || 3000;
 
 io.on('connection', function (socket) {
   socket.broadcast.emit("user connected");
+  console.log('User connected');
 
   socket.on('listo', function () {
     if (!listo[0] || !listo[1]) {
@@ -22,30 +25,41 @@ io.on('connection', function (socket) {
 
       if (listo[0] === false) {
         listo[0] = true;
-        console.log(listo[0]);
-        console.log(listo[1]);
       }
       else {
         listo[1] = true;
-        console.log(listo[0]);
-        console.log(listo[1]);
       }
       if (listo[0] === true && listo[1] === true) {
         io.to('salaJugadores').emit('empezar', true);
       }
 
-      socket.on('elegirCarta', function (carta) {
+      socket.on('elegirCarta', function (data) {
         if (listo[0] === true && listo[1] === true) {
-          cartas.push(carta);
-          console.log('has pusheado la carta' + carta);
-          console.log(cartas.length + ' Es el numero de cartas que hay en el array');
+          cartas.push(data.carta);
+          jugadores.push(data.jugador);
           if (cartas.length >= 2) {
             ganador();
             io.to('salaJugadores').emit('habilitar', false);
 
             if (rondas >= 5) {
-              io.to('salaJugadores').emit('acabar', false);
-              socket.leave('salaJugadores');
+              if (puntos[0] > puntos[1]){
+                console.log('Ha ganado' + jugadores[0])
+              }
+              if (puntos[1] > puntos[0]){
+                console.log('Ha ganado' + jugadores[1])
+              }
+              else{
+                console.log('Sois un poco tontos')
+              }
+              io.to('salaJugadores').emit('resultado','hola');
+
+              setTimeout(function () {
+                io.to('salaJugadores').emit('acabar', false);
+                socket.leave('salaJugadores');
+                jugadores = [];
+                listo[0] = false;
+                listo[1] = false
+              } , 5000);
             }
           }
         }
@@ -67,28 +81,33 @@ server.listen(port, function () {
   console.log('started on port ${port}');
 });
 
-
 function ganador() {
   if (cartas[0] === cartas[1]) {
     console.log('Empate')
   }
   if (cartas[0] === 0 && cartas[1] === 1) {
-    console.log("Gana el jugador 2");
+    console.log("Gana" + jugadores[1]);
+    puntos[1] += 1;
   }
   if (cartas[0] === 0 && cartas[1] === 2) {
-    console.log("Gana el jugador 1");
+    console.log("Gana" + jugadores[0]);
+    puntos[0] += 1;
   }
   if (cartas[0] === 1 && cartas[1] === 2) {
-    console.log("Gana el jugador 2");
+    console.log("Gana" + jugadores[1]);
+    puntos[1] += 1;
   }
   if (cartas[0] === 1 && cartas[1] === 0) {
-    console.log("Gana el jugador 1");
+    console.log("Gana" + jugadores[0]);
+    puntos[0] += 1;
   }
   if (cartas[0] === 2 && cartas[1] === 0) {
-    console.log("Gana el jugador 2");
+    console.log("Gana" + jugadores[1]);
+    puntos[1] += 1;
   }
   if (cartas[0] === 2 && cartas[1] === 1) {
-    console.log("Gana el jugador 1");
+    console.log("Gana" + jugadores[0]);
+    puntos[0] += 1;
   }
   cartas = [];
   rondas += 1;

@@ -7,10 +7,15 @@ export class ChatService {
   private url = 'http://localhost:3000';
   private socket;
 
+  usuario: string;
+
   constructor() {
     this.socket = io(this.url);
   }
 
+  public meterUsuario(usuario){
+    this.usuario = usuario;
+  }
 
   public listo() {
     this.socket.emit('listo');
@@ -21,12 +26,20 @@ export class ChatService {
   }
 
   public elegirCarta(carta) {
-    this.socket.emit('elegirCarta', carta);
+    this.socket.emit('elegirCarta', {jugador:this.usuario,carta:carta});
   }
 
   public empezar = () => {
     return Observable.create((observer) => {
       this.socket.on('empezar', (data) => {
+        observer.next(data);
+      })
+    })
+  };
+
+  public resultado = () => {
+    return Observable.create((observer) => {
+      this.socket.on('resultado', (data) => {
         observer.next(data);
       })
     })

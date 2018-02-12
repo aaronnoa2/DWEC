@@ -7,18 +7,17 @@ import {ChatService} from "../chat.service";
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  message: string;
-  username = 'Useeeeeeeeer';
-  messages: string[] = [];
-
 
   constructor(private chat: ChatService) {
-
   }
+
+  message: string;
+  username = this.chat.usuario;
+  messages: string[] = [];
 
   sendMessage() {
     let data = {usuario: this.username, mensaje: this.message};
-    console.log('zanviao unmesnaje', data);
+    console.log(this.username + ' Estamos en el chat');
     this.chat.sendMessage(data);
     this.message = '';
   }
@@ -27,7 +26,6 @@ export class ChatComponent implements OnInit {
     this.chat
       .getMessages()
       .subscribe((data) => {
-        console.log('callegao unmesnaje', data);
         this.messages.push(data);
       })
   }

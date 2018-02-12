@@ -5,3 +5,26 @@
   </div>
 </div>
 
+<div class="modal fade" id="ModalNombreUsuario" tabindex="-1" role="dialog" aria-labelledby="ModalNombreUsuario" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Introduzca el nombre de usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input [(ngModel)]="usuario" class="form-control" id="exampleInputEmail1" name="algo">
+            <small id="emailHelp" class="form-text text-muted">Los demás usuarios te verán con este nombre</small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="cerrarPopUp()" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

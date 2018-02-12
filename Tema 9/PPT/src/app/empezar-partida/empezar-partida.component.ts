@@ -27,6 +27,10 @@ export class EmpezarPartidaComponent implements OnInit {
       this.router.navigate(['/ppt']);
     });
 
+    this.chat.resultado().subscribe(data => {
+      this.router.navigate(['/resultados']);
+    });
+
     this.chat.acabar().subscribe(data => {
       this.router.navigate(['/inicio']);
     });

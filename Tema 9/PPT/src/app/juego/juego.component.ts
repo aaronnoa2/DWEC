@@ -23,5 +23,4 @@ export class JuegoComponent implements OnInit {
       this.deshabilitado = data;
     })
   }
-
 }
