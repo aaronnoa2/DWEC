@@ -1,16 +1,82 @@
 <div class="todo">
   <div class="centrar">
-    <button id="Iniciar" type="button" class="btn btn-primary btn-lg btn-block" routerLink="/empezarPartida">Jugar</button>
-    <button id="ChatGlobal" type="button" class="btn btn-secondary btn-lg btn-block" routerLink="/chat">Chat Global</button>
+    <div class="jumbotron">
+      <h1 class="display-3">Piedra Papel Tijeras</h1>
+      <hr class="my-3">
+      <div role="toolbar" id="contenedorBotones" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button *ngIf="!valido" id="reintroducirUsuario" (click)="pedirUsuario()" type="button" class="btn btn-primary btn-lg">
+            Volver a introducir usuario
+          </button>
+          <button *ngIf="valido" id="Iniciar" type="button" class="btn btn-primary btn-lg" routerLink="/empezarPartida">
+            Empezar Partida
+          </button>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+          <button  *ngIf="valido" id="ChatGlobal" type="button" class="btn btn-primary btn-lg" routerLink="/chat">Chat
+            Global
+          </button>
+        </div>
+        <hr class="my-4">
+      </div>
+      <h1 class="display-4">Informacion</h1>
+      <hr class="my-">
+      <div id="accordion">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Comienzo de la partida
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              La partida solo comenzará cuando haya dos jugadores en la sala,antes no se podrá iniciar.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Reglas
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              La partida sera un mejor de 5,Si ya has elegido alguna de las tres opciones se deshabilitaran hasta que el otro jugador elija que quiere jugar.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Final de la partida
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+                Una vez se finalice la partida aparecera un resultado de la partida y se volverá a este menú.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="modal fade" id="ModalNombreUsuario" tabindex="-1" role="dialog" aria-labelledby="ModalNombreUsuario" aria-hidden="true">
+<div class="modal fade" id="ModalNombreUsuario" tabindex="-1" role="dialog" aria-labelledby="ModalNombreUsuario"
+     aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Introduzca el nombre de usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button *ngIf="valido" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -18,12 +84,12 @@
         <form>
           <div class="form-group">
             <input [(ngModel)]="usuario" class="form-control" id="exampleInputEmail1" name="algo">
-            <small id="emailHelp" class="form-text text-muted">Los demás usuarios te verán con este nombre</small>
+            <small id="usuarioTrue" class="form-text text-muted">Cuando el usuario sea valido podrás seguir</small>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" (click)="cerrarPopUp()" class="btn btn-primary">Guardar</button>
+        <button type="button" (click)="comprobarUsuario()" class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>

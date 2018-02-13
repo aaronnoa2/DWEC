@@ -11,6 +11,7 @@ declare var $ :any;
 export class InicioComponent implements OnInit {
 
   usuario: string;
+  valido:boolean;
 
   constructor(private chat: ChatService) {}
 
@@ -24,17 +25,27 @@ export class InicioComponent implements OnInit {
   }
 
   comprobarUsuario(){
-    if(!this.chat.usuario || this.usuario == ''){
+    if(this.usuario != undefined){
+      this.valido = true;
+      this.cerrarPopUp();
+    }
+    else{
+      this.valido = false;
+    }
+    console.log(this.usuario)
+  }
+
+  pedirUsuario(){
+    if(this.chat.usuario === undefined){
       $('#ModalNombreUsuario').modal('show');
+    }
+    else{
+      this.valido = true;
     }
   }
 
   ngOnInit() {
-    this.comprobarUsuario();
-    $('#ModalNombreUsuario').on('hidde.bs.modal', () => {
-      console.log('salta hide');
-      this.comprobarUsuario();
-    });
+    this.pedirUsuario();
   }
 }
 
