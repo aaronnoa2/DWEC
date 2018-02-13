@@ -56,7 +56,6 @@ export class ChatService {
   public habilitar = () => {
     return Observable.create((observer) => {
       this.socket.on('habilitar', (data) => {
-        console.log('ojooooo');
         observer.next(data);
       })
     })

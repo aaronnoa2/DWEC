@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService} from "../chat.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-resultados',
@@ -9,11 +8,14 @@ import {Router} from "@angular/router";
 })
 export class ResultadosComponent implements OnInit {
 
-  constructor(private chat: ChatService, private router:Router) { }
+  constructor(private chat: ChatService) { }
 
-  ganador = 'Alguno';
+  ganador = '';
 
   ngOnInit() {
+    this.chat.resultado().subscribe(data => {
+      this.ganador = data;
+      console.log(data + 'Jugador que ha ganado ya asignado');
+    })
   }
-
 }

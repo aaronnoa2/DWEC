@@ -23,14 +23,22 @@ export class InicioComponent implements OnInit {
     this.enviarUsuario();
   }
 
-  pedirUsuario(){
-    if(!(this.chat.usuario)){
+  comprobarUsuario(){
+    if(!this.chat.usuario || this.usuario == ''){
       $('#ModalNombreUsuario').modal('show');
     }
   }
 
-
   ngOnInit() {
-   this.pedirUsuario();
+    this.comprobarUsuario();
+    $('#ModalNombreUsuario').on('hidde.bs.modal', () => {
+      console.log('salta hide');
+      this.comprobarUsuario();
+    });
   }
 }
+
+
+
+
+

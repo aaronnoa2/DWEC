@@ -12,6 +12,7 @@ jugadores = [];
 listo = [false, false];
 rondas = 0;
 puntos = [0,0];
+jugadorGanador = '';
 
 const port = process.env.PORT || 3000;
 
@@ -36,31 +37,36 @@ io.on('connection', function (socket) {
       socket.on('elegirCarta', function (data) {
         if (listo[0] === true && listo[1] === true) {
           cartas.push(data.carta);
+          console.log('pusheamos cartas');
           jugadores.push(data.jugador);
           if (cartas.length >= 2) {
             ganador();
-            io.to('salaJugadores').emit('habilitar', false);
 
             if (rondas >= 5) {
+
               if (puntos[0] > puntos[1]){
-                console.log('Ha ganado' + jugadores[0])
+                console.log('Ha ganado' + jugadores[0]);
+                jugadorGanador = jugadores[0];
               }
               if (puntos[1] > puntos[0]){
-                console.log('Ha ganado' + jugadores[1])
+                console.log('Ha ganado' + jugadores[1]);
+                jugadorGanador = jugadores[1];
               }
-              else{
-                console.log('Sois un poco tontos')
+              if (puntos[0] === puntos[1]){
+                console.log('Ganador final Empate');
+                jugadorGanador = 'Empate';
               }
-              io.to('salaJugadores').emit('resultado','hola');
-
+              io.to('salaJugadores').emit('resultado',jugadorGanador);
+              io.to('salaJugadores').emit('resultado',jugadorGanador);
+              console.log(jugadorGanador + 'Jugador que ha ganado pasandose al servicio');
+              reiniciar();
               setTimeout(function () {
                 io.to('salaJugadores').emit('acabar', false);
                 socket.leave('salaJugadores');
-                jugadores = [];
-                listo[0] = false;
-                listo[1] = false
+                console.log('los he sacado de la sala');
               } , 5000);
             }
+            io.to('salaJugadores').emit('habilitar', false);
           }
         }
       });
@@ -83,7 +89,7 @@ server.listen(port, function () {
 
 function ganador() {
   if (cartas[0] === cartas[1]) {
-    console.log('Empate')
+    console.log('Ronda de Empate')
   }
   if (cartas[0] === 0 && cartas[1] === 1) {
     console.log("Gana" + jugadores[1]);
@@ -109,6 +115,22 @@ function ganador() {
     console.log("Gana" + jugadores[0]);
     puntos[0] += 1;
   }
+  if(rondas >= 4){
+    rondas +=1;
+  }
+  if(rondas <=3){
+    console.log('Limpio cartas y añado ronda')
+    cartas = [];
+    rondas += 1;
+  }
+}
+
+function reiniciar() {
+  jugadores = [];
+  listo[0] = false;
+  listo[1] = false;
+  jugadorGanador = '';
+  puntos = [0,0];
+  rondas = 0;
   cartas = [];
-  rondas += 1;
 }
