@@ -18,7 +18,7 @@ export class ChatService {
   }
 
   public listo() {
-    this.socket.emit('listo');
+    this.socket.emit('listo', this.usuario);
   }
 
   public sendMessage(data) {
@@ -49,6 +49,7 @@ export class ChatService {
     return Observable.create((observer) => {
       this.socket.on('acabar', (data) => {
         observer.next(data);
+        setTimeout(() => {this.socket.emit('salir-sala')}, 1000);
       })
     })
   };
