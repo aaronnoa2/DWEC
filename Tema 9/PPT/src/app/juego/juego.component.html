@@ -1,10 +1,23 @@
-<div id="tablero" class="tablero">
-  <div class="cartas">
-    <button type="button" (click)="elegirCarta(0)" [disabled]="deshabilitado" class="btn btn-primary">Piedra</button>
-    <button type="button" (click)="elegirCarta(1)" [disabled]="deshabilitado" class="btn btn-secondary">Papel</button>
-    <button type="button" (click)="elegirCarta(2)" [disabled]="deshabilitado" class="btn btn-success">Tijera</button>
+<div class="todo">
+  <div class="centrar">
+    <div class="jumbotron">
+      <div id="jugador1">
+        {{jugador1}}:{{puntuacion1}}
+      </div>
+      <div id="jugador2">
+        {{jugador2}}:{{puntuacion2}}
+      </div>
+      <h1 class="display-3">Piedra Papel Tijeras</h1>
+      <hr class="my-3">
+      <div role="toolbar" id="contenedorBotones" aria-label="Toolbar with button groups">
+        <button type="button" (click)="elegirCarta(0)" [disabled]="deshabilitado" class="btn btn-primary">Piedra</button>
+        <button type="button" (click)="elegirCarta(1)" [disabled]="deshabilitado" class="btn btn-secondary">Papel</button>
+        <button type="button" (click)="elegirCarta(2)" [disabled]="deshabilitado" class="btn btn-success">Tijera</button>
+      </div>
+    </div>
   </div>
 </div>
+
 
 
 

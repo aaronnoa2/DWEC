@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./empezar-partida.component.css']
 })
 export class EmpezarPartidaComponent implements OnInit {
+  entrar = true;
   habilitado = false;
   link = "/empezarPartida";
   constructor(private chat: ChatService, private router: Router) { }
@@ -23,16 +24,20 @@ export class EmpezarPartidaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.chat.empezar().subscribe(data => {
+    if(this.entrar)
+    { this.chat.empezar().subscribe(data => {
       this.router.navigate(['/ppt']);
     });
 
-    this.chat.resultado().subscribe(data => {
-      this.router.navigate(['/resultados']);
-    });
+      this.chat.resultado().subscribe(data => {
+        this.router.navigate(['/resultados']);
+      });
 
-    this.chat.acabar().subscribe(data => {
-      this.router.navigate(['/inicio']);
-    });
+      this.chat.acabar().subscribe(data => {
+        this.router.navigate(['/inicio']);
+      });
+      this.entrar = false;
+    }
+
   }
 }

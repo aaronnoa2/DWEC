@@ -7,3 +7,27 @@
   padding-top:18%;
   padding-left: 40%;
 }
+
+#jugador1{
+  float: left;
+  padding-left: 5%;
+}
+
+#jugador2{
+  float:right;
+  padding-right: 5%;
+}
+
+.todo{
+  text-align: center;
+  width: 100%;
+  height: 600px;
+  padding-top: 4%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#contenedorBotones{
+  vertical-align: middle;
+  padding-top: 3%;
+}

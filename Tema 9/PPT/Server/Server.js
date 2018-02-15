@@ -25,7 +25,7 @@ io.on('connection', function (socket) {
     if (!listo[0] || !listo[1]) {
       socket.join('salaJugadores');
       console.log('----Ha entrado el jugador:', nombreJugador);
-      jugadores.push({jugador: nombreJugador, socket: socket});
+      jugadores.push(nombreJugador);
 
       if (listo[0] === false) {
         listo[0] = true;
@@ -35,17 +35,24 @@ io.on('connection', function (socket) {
       }
       if (listo[0] === true && listo[1] === true) {
         io.to('salaJugadores').emit('empezar', true);
+        console.log(jugadores);
+        jugadoresjson = {jugadorPrimero:jugadores[0],jugadorSegundo:jugadores[1]};
+        io.to('salaJugadores').emit('jugadores',jugadoresjson);
       }
 
       socket.on('elegirCarta', function (data) {
+        console.log('recibe carta '+data.jugador);
         if (listo[0] === true && listo[1] === true) {
           cartas.push(data.carta);
           console.log('pusheamos cartas:', cartas);
           if (cartas.length >= 2) {
             console.log('entro en ganador');
             ganador();
+            puntosJson = {puntuacionPrimero:puntos[0],puntuacionSegundo:puntos[1]};
+            io.to('salaJugadores').emit('puntos',puntosJson);
 
-            if (rondas >= 2) {
+
+            if (rondas >= 5) {
 
               if (puntos[0] > puntos[1]) {
                 jugadorGanador = jugadores[0].jugador;
