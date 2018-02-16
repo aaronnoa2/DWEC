@@ -10,7 +10,7 @@ export class ChatService {
   usuario: string;
 
   constructor() {
-    this.socket = io(this.url);
+    this.socket = io();
   }
 
   public meterUsuario(usuario){
