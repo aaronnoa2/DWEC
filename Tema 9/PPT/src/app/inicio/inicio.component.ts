@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ChatService} from "../chat.service";
 declare var jquery:any;
 declare var $ :any;
@@ -8,7 +8,7 @@ declare var $ :any;
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
-export class InicioComponent implements OnInit {
+export class InicioComponent implements OnInit, OnDestroy {
 
   usuario: string;
   valido:boolean;
@@ -46,6 +46,10 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     this.pedirUsuario();
+  }
+
+  ngOnDestroy(){
+
   }
 }
 
