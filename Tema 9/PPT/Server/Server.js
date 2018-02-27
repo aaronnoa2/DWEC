@@ -21,6 +21,8 @@ io.on('connection', function (socket) {
   console.log('User connected');
 
   socket.on('listo', function (nombreJugador) {
+    socket.removeAllListeners('elegirCarta');
+    console.log('acaba de limpiarse los listeners');
 
     if (!listo[0] || !listo[1]) {
       socket.join('salaJugadores');
@@ -52,25 +54,28 @@ io.on('connection', function (socket) {
             puntosJson = {puntuacionPrimero:puntos[0],puntuacionSegundo:puntos[1]};
             io.to('salaJugadores').emit('puntos',puntosJson);
 
-
+            console.log(rondas);
             if (rondas >= 5) {
 
+
+
               if (puntos[0] > puntos[1]) {
-                jugadorGanador = jugadores[0].jugador;
+                jugadorGanador = jugadores[0];
               }
               if (puntos[1] > puntos[0]) {
-                jugadorGanador = jugadores[1].jugador;
+                jugadorGanador = jugadores[1];
               }
               if (puntos[0] === puntos[1]) {
                 jugadorGanador = 'Empate';
               }
               io.to('salaJugadores').emit('resultado', jugadorGanador);
 
-              setTimeout(function () {
-                io.to('salaJugadores').emit('acabar', false);
 
+              setTimeout( () =>{
+                io.to('salaJugadores').emit('acabar', false);
                 reiniciar();
               }, 3000);
+
             }
             io.to('salaJugadores').emit('habilitar', false);
           }
@@ -139,6 +144,6 @@ function reiniciar() {
   puntos = [0, 0];
   rondas = 0;
   cartas = [];
-
-  console.log('-------------------- Datos reiniciados')
 }
+
+

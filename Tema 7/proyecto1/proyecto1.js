@@ -9,7 +9,9 @@ var imagenes = [];
 en_peticion = false;
 
 ultimo = 0;
-
+/**
+ * Restart the variables.
+ */
 function resetearVariables() {
 
     titulos = [];
@@ -23,11 +25,16 @@ function resetearVariables() {
     en_peticion = false;
 }
 
-
+/**
+ * Increase the id in 1.
+ */
 function aumentar_id() {
     div_id += 1;
 }
 
+/**
+ * Create a Div which has an img and a title for each movie that the program shows.
+ */
 function CrearDivs(html) {
     for(i = ultimo;i < html['Search'].length; i++){
         imagenes.push(html['Search'][i].Poster);
@@ -45,7 +52,9 @@ function CrearDivs(html) {
     imagenes = [];
     titulos = [];
 }
-
+/**
+ * When you click in the search button this method call the API and seach all the movies which match with the name given
+ */
 function buscarPelis() {
     $('#boton').click(function () {
 
@@ -66,7 +75,9 @@ function buscarPelis() {
         })}
     })
 }
-
+/**
+ * This function makes that when you are scrolling movies load before you reach the end of the page ultil there are not more movies
+ */
 function scrollInfinito() {
     var win = $(window);
 

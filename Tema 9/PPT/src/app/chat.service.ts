@@ -8,6 +8,7 @@ export class ChatService {
   private socket;
 
   usuario: string;
+  ganador: string;
 
   constructor() {
     this.socket = io(this.url);
@@ -30,7 +31,7 @@ export class ChatService {
   }
 
   public empezar = () => {
-    Observable.create((observer) => {
+    return Observable.create((observer) => {
       this.socket.on('empezar', (data) => {
         observer.next(data);
       });
@@ -38,7 +39,7 @@ export class ChatService {
   };
 
   public jugadores = () => {
-   Observable.create((observer) => {
+    return Observable.create((observer) => {
       this.socket.on('jugadores', (data) => {
         observer.next(data);
       });
@@ -46,7 +47,7 @@ export class ChatService {
   };
 
   public puntos = () => {
-    Observable.create((observer) => {
+    return Observable.create((observer) => {
       this.socket.on('puntos', (data) => {
         observer.next(data);
       });
@@ -54,15 +55,16 @@ export class ChatService {
   };
 
   public resultado = () => {
-   Observable.create((observer) => {
+    return Observable.create((observer) => {
       this.socket.on('resultado', (data) => {
+        this.ganador = data;
         observer.next(data);
       });
     })
   };
 
   public acabar = () => {
-    Observable.create((observer) => {
+    return Observable.create((observer) => {
       this.socket.on('acabar', (data) => {
         observer.next(data);
         setTimeout(() => {this.socket.emit('salir-sala')}, 1000);
@@ -71,7 +73,7 @@ export class ChatService {
     };
 
   public habilitar = () => {
-    Observable.create((observer) => {
+    return Observable.create((observer) => {
       this.socket.on('habilitar', (data) => {
         observer.next(data);
       });
@@ -79,7 +81,7 @@ export class ChatService {
   };
 
   public getMessages = () => {
-    Observable.create((observer) => {
+    return Observable.create((observer) => {
       this.socket.on('chat message', (data) => {
         observer.next(data);
       });

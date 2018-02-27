@@ -11,8 +11,6 @@ export class EmpezarPartidaComponent implements OnInit, OnDestroy {
   habilitado = false;
   link = "/empezarPartida";
   empezar;
-  resultado;
-  acabar;
 
   constructor(private chat: ChatService, private router: Router) { }
 
@@ -31,20 +29,10 @@ export class EmpezarPartidaComponent implements OnInit, OnDestroy {
       this.router.navigate(['/ppt']);
     });
 
-      this.resultado = this.chat.resultado().subscribe(data => {
-        this.router.navigate(['/resultados']);
-      });
-
-      this.acabar = this.chat.acabar().subscribe(data => {
-        this.router.navigate(['/inicio']);
-      });
-
 
   }
 
   ngOnDestroy(){
     this.empezar.unsubscribe();
-    this.resultado.unsubscribe();
-    this.acabar.unsubscribe();
   }
 }
